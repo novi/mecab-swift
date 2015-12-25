@@ -14,8 +14,14 @@ public enum MecabError: ErrorType {
     case NodeParseError
 }
 
+public protocol Tokenzier {
+    typealias TN
+    func tokenize(str: String) throws -> [TN]
+}
 
-public class Mecab {
+public class Mecab: Tokenzier {
+    public typealias TN = Node
+    
     let mecab: COpaquePointer
     public init() {
         self.mecab = mecab_new(0, nil)

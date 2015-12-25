@@ -9,7 +9,13 @@
 import CMeCab
 import Foundation
 
-public struct Node: CustomStringConvertible {
+public protocol TokenNode {
+    var isBosEos: Bool { get }
+    var surface: String { get }
+    var features: [String] { get }
+}
+
+public struct Node: TokenNode, CustomStringConvertible {
     public let isBosEos: Bool
     public let surface: String
     public let features: [String]
