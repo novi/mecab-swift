@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		52994ACE1C2D279900156C30 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52994ACD1C2D279900156C30 /* main.swift */; };
+		52994B031C2D36CB00156C30 /* MeCab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52994B021C2D36CB00156C30 /* MeCab.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		52994ACA1C2D279900156C30 /* MeCabDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MeCabDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		52994ACD1C2D279900156C30 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		52994B021C2D36CB00156C30 /* MeCab.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MeCab.framework; path = "../../../../Library/Developer/Xcode/DerivedData/MeCab-ecdmblpdmfoofcctjnoaarluqefl/Build/Products/Debug/MeCab.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52994B031C2D36CB00156C30 /* MeCab.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +44,7 @@
 		52994AC11C2D279900156C30 = {
 			isa = PBXGroup;
 			children = (
+				52994B021C2D36CB00156C30 /* MeCab.framework */,
 				52994ACC1C2D279900156C30 /* MeCabDemo */,
 				52994ACB1C2D279900156C30 /* Products */,
 			);
@@ -90,7 +94,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = Shiroyagi;
+				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					52994AC91C2D279900156C30 = {
 						CreatedOnToolsVersion = 7.2;
@@ -211,7 +215,6 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INCLUDE_PATHS = "\"$(SRCROOT)/../External\"";
 			};
 			name = Debug;
 		};
@@ -220,7 +223,6 @@
 			buildSettings = {
 				LIBRARY_SEARCH_PATHS = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_INCLUDE_PATHS = "\"$(SRCROOT)/../External\"";
 			};
 			name = Release;
 		};
