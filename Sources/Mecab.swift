@@ -23,12 +23,19 @@ public class Mecab: Tokenzier {
     public typealias TN = Node
     
     let mecab: COpaquePointer
+    let mutex: UnsafeMutablePointer<pthread_mutex_t> = UnsafeMutablePointer.alloc(sizeof(pthread_mutex_t))
     public init() {
         self.mecab = mecab_new(0, nil)
+        pthread_mutex_init(mutex, nil)
     }
     
     public func tokenize(str: String) throws -> [Node] {
         var nodes: [Node] = []
+        
+        pthread_mutex_lock(mutex)
+        defer {
+            pthread_mutex_unlock(mutex)
+        }
         
         var node = mecab_sparse_tonode(mecab, NSString(string: str).UTF8String)
         while true {
@@ -43,5 +50,6 @@ public class Mecab: Tokenzier {
     
     deinit {
         mecab_destroy(mecab)
+        pthread_mutex_destroy(mutex)
     }
 }

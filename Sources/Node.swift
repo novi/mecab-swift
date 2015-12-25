@@ -15,13 +15,27 @@ public protocol TokenNode {
     var features: [String] { get }
 }
 
+extension Node {
+    public enum Type: Int {
+        case Normal = 0
+        case Unknown = 1
+        case BeginOfSentence = 2
+        case EndOfSentence = 3
+        case EndOfNBestEnumeration = 4
+    }
+}
+
 public struct Node: TokenNode, CustomStringConvertible {
     public let isBosEos: Bool
     public let surface: String
     public let features: [String]
+    public let posId: Int
+    public let type: Type
+    
     init(_ node: UnsafePointer<mecab_node_t>) throws {
         guard let surface = NSString(bytes: node.memory.surface, length: Int(node.memory.length), encoding: NSUTF8StringEncoding),
-            let feature = NSString(UTF8String: node.memory.feature) else {
+            let feature = NSString(UTF8String: node.memory.feature),
+            let type = Type(rawValue: Int(node.memory.stat)) else {
                 throw MecabError.NodeParseError
         }
         self.surface = surface as String
@@ -29,12 +43,14 @@ public struct Node: TokenNode, CustomStringConvertible {
         if features.count == 0 {
             throw MecabError.NodeParseError
         }
-        self.isBosEos = features[0] == "BOS/EOS"
+        self.isBosEos = type == .EndOfSentence || type == .BeginOfSentence
+        self.type = type
+        self.posId = Int(node.memory.posid)
     }
 }
 
 extension Node {
     public var description: String {
-        return "\(surface): \(features)"
+        return "\(surface): \(posId) \(features)"
     }
 }
