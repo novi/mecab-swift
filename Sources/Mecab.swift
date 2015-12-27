@@ -6,6 +6,10 @@
 //  Copyright © 2015 Yusuke Ito. All rights reserved.
 //
 
+#if os(Linux)
+    import Glibc
+#endif
+
 import CMeCab
 import Foundation
 
