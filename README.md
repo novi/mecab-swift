@@ -1,6 +1,10 @@
 mecab-swift
 ===========
 
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+
+
+
 MeCab wrapper for Swift.
 
 
@@ -36,7 +40,7 @@ for n in nodes.filter({ !$0.isBosEos }) {
 
 # Requirements
 
-* Swift 2.1 or Later
+* Swift 2.1 or Later (Linux and OS X)
 * OS X 10.10 or Later
 
 # Dependencies

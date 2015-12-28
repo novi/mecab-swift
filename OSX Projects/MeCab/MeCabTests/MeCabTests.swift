@@ -11,26 +11,54 @@ import XCTest
 
 class MeCabTests: XCTestCase {
     
+    var mecab: Mecab!
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        self.mecab = Mecab()
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testTokenizeWithDefaults() {
+        
+        let text = "あのイーハトーヴォのすきとおった風、"
+        
+        let nodes = try! mecab.tokenize(text)
+        
+        for n in nodes {
+            print(n.description)
         }
+        
+        
+        XCTAssertEqual(nodes.count, 9)
+        
+        XCTAssertTrue(nodes[0].isBosEos)
+        
+        XCTAssertEqual(nodes[1].surface, "あの")
+        XCTAssertEqual(nodes[1].posId, 68) // this value for ipadic
+        
+        XCTAssertEqual(nodes[2].surface, "イーハトーヴォ")
+        XCTAssertEqual(nodes[2].posId, 38)
+        
+        XCTAssertEqual(nodes[3].surface, "の")
+        XCTAssertEqual(nodes[3].posId, 13)
+        
+        XCTAssertEqual(nodes[4].surface, "すきとおっ")
+        XCTAssertEqual(nodes[4].posId, 31)
+        
+        XCTAssertEqual(nodes[5].surface, "た")
+        XCTAssertEqual(nodes[5].posId, 25)
+    
+        XCTAssertEqual(nodes[6].surface, "風")
+        XCTAssertEqual(nodes[6].posId, 38)
+        
+        XCTAssertEqual(nodes[7].surface, "、")
+        XCTAssertEqual(nodes[7].posId, 9)
+        
+        XCTAssertTrue(nodes[8].isBosEos)
     }
     
 }

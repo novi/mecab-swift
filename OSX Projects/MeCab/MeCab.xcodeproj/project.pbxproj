@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5271EADC1C310AE5004CA6EC /* libmecab.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271EADB1C310AE5004CA6EC /* libmecab.a */; };
+		5271EADE1C310B24004CA6EC /* libmecab.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5271EADB1C310AE5004CA6EC /* libmecab.a */; };
+		5271EAE01C310B6A004CA6EC /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271EADF1C310B6A004CA6EC /* libstdc++.tbd */; };
+		5271EAE21C310B74004CA6EC /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271EAE11C310B74004CA6EC /* libiconv.tbd */; };
 		52994AE71C2D362C00156C30 /* MeCab.h in Headers */ = {isa = PBXBuildFile; fileRef = 52994AE61C2D362C00156C30 /* MeCab.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52994AEE1C2D362C00156C30 /* MeCab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52994AE31C2D362C00156C30 /* MeCab.framework */; };
 		52994AF31C2D362C00156C30 /* MeCabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52994AF21C2D362C00156C30 /* MeCabTests.swift */; };
@@ -24,7 +28,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		5271EADD1C310B1C004CA6EC /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				5271EADE1C310B24004CA6EC /* libmecab.a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		5271EADB1C310AE5004CA6EC /* libmecab.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmecab.a; path = /usr/local/lib/libmecab.a; sourceTree = "<absolute>"; };
+		5271EADF1C310B6A004CA6EC /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		5271EAE11C310B74004CA6EC /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
 		52994AE31C2D362C00156C30 /* MeCab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeCab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52994AE61C2D362C00156C30 /* MeCab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeCab.h; sourceTree = "<group>"; };
 		52994AE81C2D362C00156C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -40,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5271EAE21C310B74004CA6EC /* libiconv.tbd in Frameworks */,
+				5271EAE01C310B6A004CA6EC /* libstdc++.tbd in Frameworks */,
+				5271EADC1C310AE5004CA6EC /* libmecab.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,9 +77,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5271EAE31C310B9D004CA6EC /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				5271EAE11C310B74004CA6EC /* libiconv.tbd */,
+				5271EADF1C310B6A004CA6EC /* libstdc++.tbd */,
+				5271EADB1C310AE5004CA6EC /* libmecab.a */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
 		52994AD91C2D362C00156C30 = {
 			isa = PBXGroup;
 			children = (
+				5271EAE31C310B9D004CA6EC /* lib */,
 				52994AE51C2D362C00156C30 /* MeCab */,
 				52994AF11C2D362C00156C30 /* MeCabTests */,
 				52994AE41C2D362C00156C30 /* Products */,
@@ -119,6 +153,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52994AF71C2D362C00156C30 /* Build configuration list for PBXNativeTarget "MeCab" */;
 			buildPhases = (
+				5271EADD1C310B1C004CA6EC /* CopyFiles */,
 				52994ADE1C2D362C00156C30 /* Sources */,
 				52994ADF1C2D362C00156C30 /* Frameworks */,
 				52994AE01C2D362C00156C30 /* Headers */,
@@ -335,6 +370,7 @@
 				INFOPLIST_FILE = MeCab/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-lmecab";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.novi.MeCab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -356,6 +392,7 @@
 				INFOPLIST_FILE = MeCab/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "-lmecab";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.novi.MeCab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -404,6 +441,7 @@
 				52994AF91C2D362C00156C30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		52994AFA1C2D362C00156C30 /* Build configuration list for PBXNativeTarget "MeCabTests" */ = {
 			isa = XCConfigurationList;
@@ -412,6 +450,7 @@
 				52994AFC1C2D362C00156C30 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
