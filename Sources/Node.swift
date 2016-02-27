@@ -7,7 +7,6 @@
 //
 
 import CMeCab
-import Foundation
 
 public protocol TokenNode {
     var isBosEos: Bool { get }
@@ -33,13 +32,38 @@ public struct Node: TokenNode, CustomStringConvertible {
     public let type: Type
     
     init(_ node: UnsafePointer<mecab_node_t>) throws {
-        guard let surface = NSString(bytes: node.memory.surface, length: Int(node.memory.length), encoding: NSUTF8StringEncoding),
-            let feature = NSString(UTF8String: node.memory.feature),
+        let surfaceBuf: [Int8] = {
+            var buf:[Int8] = []
+            for i in 0..<node.memory.length {
+                buf.append(node.memory.surface[Int(i)])
+            }
+            buf.append(0)
+            return buf
+        }()
+        
+        
+        let featureBuf: [Int8] = {
+            var buf: [Int8] = []
+            var i = 0
+            while i <= 100 {
+                let val = node.memory.feature[Int(i)]
+                if val == 0 {
+                    break
+                }
+                buf.append(val)
+                i += 1
+            }
+            buf.append(0)
+            return buf
+        }()
+        
+        guard let surface = String.fromCString(surfaceBuf),
+            let feature = String.fromCString(featureBuf),
             let type = Type(rawValue: Int(node.memory.stat)) else {
                 throw MecabError.NodeParseError
         }
         self.surface = surface as String
-        self.features = (feature as String).componentsSeparatedByString(",")
+        self.features = feature.componentsSeparatedByString(",")
         if features.count == 0 {
             throw MecabError.NodeParseError
         }

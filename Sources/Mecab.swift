@@ -11,7 +11,6 @@
 #endif
 
 import CMeCab
-import Foundation
 
 public enum MecabError: ErrorType {
     case MecabInitializeError
@@ -19,7 +18,7 @@ public enum MecabError: ErrorType {
 }
 
 public protocol Tokenzier {
-    associatedtype T
+    associatedtype T: TokenNode
     func tokenize(str: String) throws -> [T]
 }
 
@@ -27,8 +26,11 @@ public class Mecab: Tokenzier {
     
     let mecab: COpaquePointer
     let mutex: UnsafeMutablePointer<pthread_mutex_t> = UnsafeMutablePointer.alloc(sizeof(pthread_mutex_t))
-    public init() {
+    public init() throws {
         self.mecab = mecab_new(0, nil)
+        if mecab == nil {
+            throw MecabError.MecabInitializeError
+        }
         pthread_mutex_init(mutex, nil)
     }
     
@@ -40,7 +42,8 @@ public class Mecab: Tokenzier {
             pthread_mutex_unlock(mutex)
         }
         
-        var node = mecab_sparse_tonode(mecab, NSString(string: str).UTF8String)
+        
+        var node = mecab_sparse_tonode(mecab, str.withCString{ $0 })
         while true {
             if node == nil {
                 break

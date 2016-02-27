@@ -15,7 +15,7 @@ class MeCabTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        self.mecab = Mecab()
+        self.mecab = try! Mecab()
     }
     
     override func tearDown() {
