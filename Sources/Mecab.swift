@@ -42,16 +42,18 @@ public class Mecab: Tokenzier {
             pthread_mutex_unlock(mutex)
         }
         
-        
-        var node = mecab_sparse_tonode(mecab, str.withCString{ $0 })
-        while true {
-            if node == nil {
-                break
+        return try str.withCString{ buf in
+            var nodes: [Node] = []
+            var node = mecab_sparse_tonode(mecab, buf)
+            while true {
+                if node == nil {
+                    break
+                }
+                nodes.append(try Node(node))
+                node = UnsafePointer(node.memory.next)
             }
-            nodes.append(try Node(node))
-            node = UnsafePointer(node.memory.next)
+            return nodes
         }
-        return nodes
     }
     
     deinit {
