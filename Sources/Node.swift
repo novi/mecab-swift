@@ -45,7 +45,7 @@ public struct Node: TokenNode, CustomStringConvertible {
         let featureBuf: [Int8] = {
             var buf: [Int8] = []
             var i = 0
-            while i <= 100 {
+            while i <= max(Int(node.memory.length)*2, 1000) {
                 let val = node.memory.feature[Int(i)]
                 if val == 0 {
                     break
