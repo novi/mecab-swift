@@ -19,12 +19,11 @@ public enum MecabError: ErrorType {
 }
 
 public protocol Tokenzier {
-    typealias TN
-    func tokenize(str: String) throws -> [TN]
+    associatedtype T
+    func tokenize(str: String) throws -> [T]
 }
 
 public class Mecab: Tokenzier {
-    public typealias TN = Node
     
     let mecab: COpaquePointer
     let mutex: UnsafeMutablePointer<pthread_mutex_t> = UnsafeMutablePointer.alloc(sizeof(pthread_mutex_t))
