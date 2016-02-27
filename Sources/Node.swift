@@ -63,7 +63,7 @@ public struct Node: TokenNode, CustomStringConvertible {
                 throw MecabError.NodeParseError
         }
         self.surface = surface as String
-        self.features = feature.componentsSeparatedByString(",")
+        self.features = feature.characters.split(",").map(String.init)
         if features.count == 0 {
             throw MecabError.NodeParseError
         }
