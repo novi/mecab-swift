@@ -16,7 +16,7 @@ public protocol TokenNode {
 }
 
 extension Node {
-    public enum Type: Int {
+    public enum `Type`: Int {
         case Normal = 0
         case Unknown = 1
         case BeginOfSentence = 2
