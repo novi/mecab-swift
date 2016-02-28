@@ -10,5 +10,6 @@ let package = Package(
     name: "MeCab",
     dependencies: [
         .Package(url: CMeCabURL, majorVersion: 1)
-    ]
+    ],
+    exclude: ["OSX Projects"]
 )
