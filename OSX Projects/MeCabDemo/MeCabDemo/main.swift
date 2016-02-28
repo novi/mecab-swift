@@ -10,7 +10,7 @@ import MeCab
 import Foundation
 
 
-let m = Mecab()
+let m = try! Mecab()
 
 let nodes = try! m.tokenize("太郎は次郎が持っている本を花子に渡した。")
 

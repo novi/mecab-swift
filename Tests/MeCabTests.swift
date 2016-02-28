@@ -11,18 +11,9 @@ import XCTest
 
 class MeCabTests: XCTestCase {
     
-    var mecab: Mecab!
-    
-    override func setUp() {
-        super.setUp()
-        self.mecab = try! Mecab()
-    }
-    
-    override func tearDown() {
-        super.tearDown()
-    }
-    
     func testTokenizeWithDefaults() {
+        
+        let mecab = try! Mecab()
         
         let text = "あのイーハトーヴォのすきとおった風、"
         

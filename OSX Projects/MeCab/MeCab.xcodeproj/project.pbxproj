@@ -11,9 +11,9 @@
 		5271EADE1C310B24004CA6EC /* libmecab.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5271EADB1C310AE5004CA6EC /* libmecab.a */; };
 		5271EAE01C310B6A004CA6EC /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271EADF1C310B6A004CA6EC /* libstdc++.tbd */; };
 		5271EAE21C310B74004CA6EC /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 5271EAE11C310B74004CA6EC /* libiconv.tbd */; };
+		52965F871C82EBCD00E35C64 /* MeCabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52965F861C82EBCD00E35C64 /* MeCabTests.swift */; };
 		52994AE71C2D362C00156C30 /* MeCab.h in Headers */ = {isa = PBXBuildFile; fileRef = 52994AE61C2D362C00156C30 /* MeCab.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		52994AEE1C2D362C00156C30 /* MeCab.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52994AE31C2D362C00156C30 /* MeCab.framework */; };
-		52994AF31C2D362C00156C30 /* MeCabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52994AF21C2D362C00156C30 /* MeCabTests.swift */; };
 		52994B001C2D365900156C30 /* Mecab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52994AFE1C2D365900156C30 /* Mecab.swift */; };
 		52994B011C2D365900156C30 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52994AFF1C2D365900156C30 /* Node.swift */; };
 /* End PBXBuildFile section */
@@ -45,11 +45,11 @@
 		5271EADB1C310AE5004CA6EC /* libmecab.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmecab.a; path = /usr/local/lib/libmecab.a; sourceTree = "<absolute>"; };
 		5271EADF1C310B6A004CA6EC /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
 		5271EAE11C310B74004CA6EC /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		52965F861C82EBCD00E35C64 /* MeCabTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeCabTests.swift; sourceTree = "<group>"; };
 		52994AE31C2D362C00156C30 /* MeCab.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MeCab.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52994AE61C2D362C00156C30 /* MeCab.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MeCab.h; sourceTree = "<group>"; };
 		52994AE81C2D362C00156C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52994AED1C2D362C00156C30 /* MeCabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MeCabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		52994AF21C2D362C00156C30 /* MeCabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeCabTests.swift; sourceTree = "<group>"; };
 		52994AF41C2D362C00156C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52994AFE1C2D365900156C30 /* Mecab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mecab.swift; sourceTree = "<group>"; };
 		52994AFF1C2D365900156C30 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -87,6 +87,15 @@
 			name = lib;
 			sourceTree = "<group>";
 		};
+		52965F851C82EBCD00E35C64 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				52965F861C82EBCD00E35C64 /* MeCabTests.swift */,
+			);
+			name = Tests;
+			path = ../../../Tests;
+			sourceTree = "<group>";
+		};
 		52994AD91C2D362C00156C30 = {
 			isa = PBXGroup;
 			children = (
@@ -119,7 +128,7 @@
 		52994AF11C2D362C00156C30 /* MeCabTests */ = {
 			isa = PBXGroup;
 			children = (
-				52994AF21C2D362C00156C30 /* MeCabTests.swift */,
+				52965F851C82EBCD00E35C64 /* Tests */,
 				52994AF41C2D362C00156C30 /* Info.plist */,
 			);
 			path = MeCabTests;
@@ -253,7 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52994AF31C2D362C00156C30 /* MeCabTests.swift in Sources */,
+				52965F871C82EBCD00E35C64 /* MeCabTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
