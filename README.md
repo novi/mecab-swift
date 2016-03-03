@@ -1,7 +1,10 @@
 mecab-swift
 ===========
 
+[![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg)](https://swift.org)
+![Platform Linux, OSX](https://img.shields.io/badge/Platforms-Linux%2C%20OSX-lightgray.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Travis CI](https://travis-ci.org/novi/mecab-swift.svg)](https://travis-ci.org/novi/mecab-swift)
 
 
 
