@@ -1,4 +1,5 @@
-BUILDOPTS=-Xlinker -L/usr/lib -Xcc -IPackages/CMeCab-1.0.0
+CMecab=CMeCab-1.0.0
+BUILDOPTS=-Xlinker -L/usr/lib -Xcc -IPackages/$(CMecab)
 
 SWIFTC=swiftc
 SWIFT=swift
@@ -9,10 +10,10 @@ endif
 OS := $(shell uname)
 ifeq ($(OS),Darwin)
     SWIFTC=xcrun -sdk macosx swiftc
-	BUILDOPTS=-Xlinker -L/usr/local/lib
+	BUILDOPTS=-Xcc -IPackages/$(CMecab) -Xlinker -L/usr/local/lib
 endif
 
-all: build test
+all: build
 	
 build:
 	$(SWIFT) build -v $(BUILDOPTS)
