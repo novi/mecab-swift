@@ -34,8 +34,8 @@ public struct Node: TokenNode, CustomStringConvertible {
     init(_ node: UnsafePointer<mecab_node_t>) throws {
         let surfaceBuf: [Int8] = {
             var buf:[Int8] = []
-            for i in 0..<node.memory.length {
-                buf.append(node.memory.surface[Int(i)])
+            for i in 0..<node.pointee.length {
+                buf.append(node.pointee.surface[Int(i)])
             }
             buf.append(0)
             return buf
@@ -45,8 +45,8 @@ public struct Node: TokenNode, CustomStringConvertible {
         let featureBuf: [Int8] = {
             var buf: [Int8] = []
             var i = 0
-            while i <= max(Int(node.memory.length)*2, 1000) {
-                let val = node.memory.feature[Int(i)]
+            while i <= max(Int(node.pointee.length)*2, 1000) {
+                let val = node.pointee.feature[Int(i)]
                 if val == 0 {
                     break
                 }
@@ -57,19 +57,19 @@ public struct Node: TokenNode, CustomStringConvertible {
             return buf
         }()
         
-        guard let surface = String.fromCString(surfaceBuf),
-            let feature = String.fromCString(featureBuf),
-            let type = Type(rawValue: Int(node.memory.stat)) else {
+        guard let surface = String(validatingUTF8: surfaceBuf),
+            let feature = String(validatingUTF8: featureBuf),
+            let type = Type(rawValue: Int(node.pointee.stat)) else {
                 throw MecabError.NodeParseError
         }
         self.surface = surface as String
-        self.features = feature.characters.split(",").map(String.init)
+        self.features = feature.characters.split(separator: ",").map(String.init)
         if features.count == 0 {
             throw MecabError.NodeParseError
         }
         self.isBosEos = type == .EndOfSentence || type == .BeginOfSentence
         self.type = type
-        self.posId = Int(node.memory.posid)
+        self.posId = Int(node.pointee.posid)
     }
 }
 

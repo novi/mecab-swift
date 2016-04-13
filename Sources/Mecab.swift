@@ -12,34 +12,34 @@
 
 import CMeCab
 
-public enum MecabError: ErrorType {
+public enum MecabError: ErrorProtocol {
     case MecabInitializeError
     case NodeParseError
 }
 
 public protocol Tokenzier {
     associatedtype T: TokenNode
-    func tokenize(str: String) throws -> [T]
+    func tokenize(string str: String) throws -> [T]
 }
 
 public class Mecab: Tokenzier {
     
-    let mecab: COpaquePointer
-    let mutex: UnsafeMutablePointer<pthread_mutex_t> = UnsafeMutablePointer.alloc(sizeof(pthread_mutex_t))
+    let mecab: OpaquePointer
+    var mutex = pthread_mutex_t()
     public init() throws {
-        self.mecab = mecab_new(0, nil)
-        if mecab == nil {
+        guard let mecab = mecab_new(0, nil) else {
             throw MecabError.MecabInitializeError
         }
-        pthread_mutex_init(mutex, nil)
+        self.mecab = mecab
+        pthread_mutex_init(&mutex, nil)
     }
     
-    public func tokenize(str: String) throws -> [Node] {
+    public func tokenize(string str: String) throws -> [Node] {
         var nodes: [Node] = []
         
-        pthread_mutex_lock(mutex)
+        pthread_mutex_lock(&mutex)
         defer {
-            pthread_mutex_unlock(mutex)
+            pthread_mutex_unlock(&mutex)
         }
         
         return try str.withCString{ buf in
@@ -50,7 +50,7 @@ public class Mecab: Tokenzier {
                     break
                 }
                 nodes.append(try Node(node))
-                node = UnsafePointer(node.memory.next)
+                node = UnsafePointer(node.pointee.next)
             }
             return nodes
         }
@@ -58,6 +58,6 @@ public class Mecab: Tokenzier {
     
     deinit {
         mecab_destroy(mecab)
-        pthread_mutex_destroy(mutex)
+        pthread_mutex_destroy(&mutex)
     }
 }
