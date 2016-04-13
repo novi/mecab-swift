@@ -1,11 +1,8 @@
-#if os(Linux)
-    
+
 import XCTest
-@testable import MeCabtest
+@testable import MeCabTestSuite
 
 
 XCTMain([
-    MeCabTests()
+    testCase( MeCabTests.allTests )
 ])
-
-#endif
