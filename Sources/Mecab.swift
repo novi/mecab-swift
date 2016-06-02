@@ -13,8 +13,8 @@
 import CMeCab
 
 public enum MecabError: ErrorProtocol {
-    case MecabInitializeError
-    case NodeParseError
+    case mecabInitializeError
+    case nodeParseError
 }
 
 public protocol Tokenzier {
@@ -28,7 +28,7 @@ public class Mecab: Tokenzier {
     var mutex = pthread_mutex_t()
     public init() throws {
         guard let mecab = mecab_new(0, nil) else {
-            throw MecabError.MecabInitializeError
+            throw MecabError.mecabInitializeError
         }
         self.mecab = mecab
         pthread_mutex_init(&mutex, nil)
@@ -46,11 +46,12 @@ public class Mecab: Tokenzier {
             var nodes: [Node] = []
             var node = mecab_sparse_tonode(mecab, buf)
             while true {
-                if node == nil {
+                if let n = node {
+                    nodes.append(try Node(n))
+                    node = UnsafePointer(n.pointee.next)
+                } else {
                     break
                 }
-                nodes.append(try Node(node))
-                node = UnsafePointer(node.pointee.next)
             }
             return nodes
         }

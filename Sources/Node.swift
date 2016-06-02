@@ -60,12 +60,12 @@ public struct Node: TokenNode, CustomStringConvertible {
         guard let surface = String(validatingUTF8: surfaceBuf),
             let feature = String(validatingUTF8: featureBuf),
             let type = Type(rawValue: Int(node.pointee.stat)) else {
-                throw MecabError.NodeParseError
+                throw MecabError.nodeParseError
         }
         self.surface = surface as String
         self.features = feature.characters.split(separator: ",").map(String.init)
         if features.count == 0 {
-            throw MecabError.NodeParseError
+            throw MecabError.nodeParseError
         }
         self.isBosEos = type == .EndOfSentence || type == .BeginOfSentence
         self.type = type
