@@ -43,7 +43,7 @@ for n in nodes.filter({ !$0.isBosEos }) {
 
 # Requirements
 
-* Swift 2.1 or Later (Linux and OS X)
+* Swift Development Snapshot (Linux and macOS)
 * OS X 10.10 or Later
 
 # Dependencies

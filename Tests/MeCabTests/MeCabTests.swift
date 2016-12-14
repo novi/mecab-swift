@@ -9,25 +9,24 @@
 import XCTest
 @testable import MeCab
 
-#if os(Linux)
 extension MeCabTests {
-    var allTests : [(String, () throws -> Void)] {
+    static var allTests : [(String, (MeCabTests) -> () throws -> Void)] {
         return [
-                   ("testTokenizeWithDefaults", testTokenizeWithDefaults)
+                   ("testTokenizeWithDefaults", testTokenizeWithDefaults),
+                   ("testDemo", testDemo)
         ]
     }
 }
-#endif
 
 class MeCabTests: XCTestCase {
     
-    func testTokenizeWithDefaults() {
+    func testTokenizeWithDefaults() throws {
         
-        let mecab = try! Mecab()
+        let mecab = try Mecab()
         
         let text = "あのイーハトーヴォのすきとおった風、"
         
-        let nodes = try! mecab.tokenize(text)
+        let nodes = try mecab.tokenize(string: text)
         
         for n in nodes {
             print(n.description)
@@ -60,6 +59,28 @@ class MeCabTests: XCTestCase {
         XCTAssertEqual(nodes[7].posId, 9)
         
         XCTAssertTrue(nodes[8].isBosEos)
+    }
+    
+    func testDemo() throws {
+        
+        let m = try Mecab()
+        
+        let nodes = try m.tokenize(string: "太郎は次郎が持っている本を花子に渡した。")
+        
+        // MARK: Demo
+        
+        for n in nodes.filter({ !$0.isBosEos }) {
+            print(n.surface, n.features, n.posId)
+        }
+        
+        // MARK: Test
+        
+        let expected = "太郎 は 次郎 が 持っ て いる 本 を 花 子 に 渡し た 。".characters.split(separator: " ").map(String.init)
+        let bodyNodes = nodes.filter({ !$0.isBosEos })
+        
+        XCTAssertEqual(expected, bodyNodes.map{ $0.surface })
+        
+        XCTAssertEqual(expected.count, bodyNodes.count)
     }
     
 }
