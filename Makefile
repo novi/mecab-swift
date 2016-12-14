@@ -15,7 +15,7 @@ endif
 all: build
 	
 build:
-	$(SWIFT) build -v $(BUILDOPTS)
+	$(SWIFT) build $(BUILDOPTS)
 	
 test:
-	$(SWIFT) test
+	$(SWIFT) test $(BUILDOPTS) 
