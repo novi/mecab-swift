@@ -10,7 +10,7 @@ import XCTest
 @testable import MeCab
 
 extension MeCabTests {
-    static var allTests : [(String, MeCabTests -> () throws -> Void)] {
+    static var allTests : [(String, (MeCabTests) -> () throws -> Void)] {
         return [
                    ("testTokenizeWithDefaults", testTokenizeWithDefaults),
                    ("testDemo", testDemo)

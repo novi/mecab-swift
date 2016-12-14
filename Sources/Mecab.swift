@@ -12,7 +12,7 @@
 
 import CMeCab
 
-public enum MecabError: ErrorProtocol {
+public enum MecabError: Error {
     case mecabInitializeError
     case nodeParseError
 }

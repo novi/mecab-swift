@@ -1,6 +1,6 @@
 
 import XCTest
-@testable import MeCabTestSuite
+@testable import MeCabTests
 
 
 XCTMain([
