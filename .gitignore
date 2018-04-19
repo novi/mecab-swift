@@ -31,3 +31,4 @@ Carthage/
 Constants.swift
 *.xcscmblueprint
 /*.xcodeproj
+Package.resolved

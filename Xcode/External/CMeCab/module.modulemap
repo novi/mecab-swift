@@ -1,4 +1,0 @@
-module CMeCab [system] {
-    header "/usr/local/include/mecab.h"
-    export *
-}

@@ -8,8 +8,7 @@ ifdef SWIFTPATH
 endif
 OS := $(shell uname)
 ifeq ($(OS),Darwin)
-    SWIFTC=xcrun -sdk macosx swiftc
-		BUILDOPTS=-Xlinker -L/usr/local/lib
+    BUILDOPTS=
 endif
 
 all: build
@@ -18,4 +17,4 @@ build:
 	$(SWIFT) build $(BUILDOPTS)
 	
 test:
-	$(SWIFT) test $(BUILDOPTS) 
+	$(SWIFT) test $(BUILDOPTS)
