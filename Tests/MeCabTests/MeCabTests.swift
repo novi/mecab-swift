@@ -75,7 +75,7 @@ class MeCabTests: XCTestCase {
         
         // MARK: Test
         
-        let expected = "太郎 は 次郎 が 持っ て いる 本 を 花 子 に 渡し た 。".characters.split(separator: " ").map(String.init)
+        let expected = "太郎 は 次郎 が 持っ て いる 本 を 花 子 に 渡し た 。".split(separator: " ").map(String.init)
         let bodyNodes = nodes.filter({ !$0.isBosEos })
         
         XCTAssertEqual(expected, bodyNodes.map{ $0.surface })
