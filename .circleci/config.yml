@@ -13,7 +13,7 @@ jobs:
       - image: swift:4.1
     steps:
       - checkout
-      - run: apt-get install mecab libmecab-dev mecab-ipadic-utf8
+      - run: apt-get update && apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
       - run: swift build
       - run: swift test
   linux-swift4.1:
@@ -21,7 +21,7 @@ jobs:
       - image: swift:4
     steps:
       - checkout
-      - run: apt-get install mecab libmecab-dev mecab-ipadic-utf8
+      - run: apt-get update && apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
       - run: swift build
       - run: swift test
 workflows:
