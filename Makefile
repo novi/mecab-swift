@@ -8,7 +8,7 @@ endif
 all: build
 	
 build:
-	$(SWIFT) build $(BUILDOPTS)
+	swift build $(BUILDOPTS)
 	
 test:
-	$(SWIFT) test $(BUILDOPTS)
+	swift test $(BUILDOPTS)
