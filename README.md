@@ -1,10 +1,9 @@
 mecab-swift
 ===========
 
-[![Swift 2.2](https://img.shields.io/badge/Swift-2.2-orange.svg)](https://swift.org)
-![Platform Linux, OSX](https://img.shields.io/badge/Platforms-Linux%2C%20OSX-lightgray.svg)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Travis CI](https://travis-ci.org/novi/mecab-swift.svg)](https://travis-ci.org/novi/mecab-swift)
+[![Swift 4.0](https://img.shields.io/badge/Swift-2.2-orange.svg)](https://swift.org)
+![Platform Linux, macOS](https://img.shields.io/badge/Platforms-Linux%2C%20OSX-lightgray.svg)
+[![CircleCI](https://circleci.com/gh/novi/mecab-swift.svg?style=svg)](https://circleci.com/gh/novi/mecab-swift)
 
 
 
@@ -43,8 +42,7 @@ for n in nodes.filter({ !$0.isBosEos }) {
 
 # Requirements
 
-* Swift Development Snapshot (Linux and macOS)
-* OS X 10.10 or Later
+* Swift 4.0 or later (Linux and macOS)
 
 # Dependencies
 
