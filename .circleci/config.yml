@@ -1,0 +1,34 @@
+version: 2
+jobs:
+  mac-swift4.1:
+    macos:
+      xcode: "9.3.0"
+    steps:
+      - checkout
+      - run: brew install mecab-ipadic mecab
+      - run: make build
+      - run: make test
+  linux-swift4.0:
+    docker:
+      - image: swift:4.1
+    steps:
+      - checkout
+      - run: apt-get install mecab libmecab-dev mecab-ipadic-utf8
+      - run: swift build
+      - run: swift test
+  linux-swift4.1:
+    docker:
+      - image: swift:4
+    steps:
+      - checkout
+      - run: apt-get install mecab libmecab-dev mecab-ipadic-utf8
+      - run: swift build
+      - run: swift test
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - mac-swift4.1
+      - linux-swift4.0
+      - linux-swift4.1
+
