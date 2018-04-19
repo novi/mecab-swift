@@ -1,14 +1,8 @@
 BUILDOPTS=-Xlinker -L/usr/lib
 
-SWIFTC=swiftc
-SWIFT=swift
-ifdef SWIFTPATH
-    SWIFTC=$(SWIFTPATH)/bin/swiftc
-    SWIFT=$(SWIFTPATH)/bin/swift
-endif
 OS := $(shell uname)
 ifeq ($(OS),Darwin)
-    BUILDOPTS=
+    BUILDOPTS=-Xlinker -L/usr/local/lib
 endif
 
 all: build
