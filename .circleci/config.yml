@@ -1,34 +1,23 @@
 version: 2
 jobs:
-  mac-swift4.1:
+  mac-swift5:
     macos:
-      xcode: "9.3.0"
+      xcode: "11.7.0"
     steps:
       - checkout
-      - run: brew install mecab-ipadic mecab
-      - run: make build
-      - run: make test
-  linux-swift4.0:
-    docker:
-      - image: swift:4.1
-    steps:
-      - checkout
-      - run: apt-get update && apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
-      - run: swift build
+      - run: brew tap novi/tap && brew install novi/tap/cmecab
       - run: swift test
-  linux-swift4.1:
+  linux-swift5.2:
     docker:
-      - image: swift:4
+      - image: swift:5.2
     steps:
       - checkout
-      - run: apt-get update && apt-get install -y mecab libmecab-dev mecab-ipadic-utf8
-      - run: swift build
-      - run: swift test
+      - run: apt-get update && apt-get install -y libmecab-dev mecab-ipadic-utf8
+      - run: swift test --enable-test-discovery
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - mac-swift4.1
-      - linux-swift4.0
-      - linux-swift4.1
+      - mac-swift5
+      - linux-swift5.2
 

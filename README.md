@@ -1,7 +1,7 @@
 mecab-swift
 ===========
 
-[![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)](https://swift.org)
+[![Swift 5.2](https://img.shields.io/badge/Swift-5.2-orange.svg)](https://swift.org)
 ![Platform Linux, macOS](https://img.shields.io/badge/Platforms-Linux%2C%20macOS-lightgray.svg)
 [![CircleCI](https://circleci.com/gh/novi/mecab-swift.svg?style=svg)](https://circleci.com/gh/novi/mecab-swift)
 
@@ -42,7 +42,16 @@ for n in nodes.filter({ !$0.isBosEos }) {
 
 # Requirements
 
-* Swift 4.0 or later (Linux and macOS)
+* Swift 5.2 or later (Linux and macOS)
+
+## macOS
+
+Install pkg-config `.pc`.
+
+```sh
+$ brew tap novi/tap
+$ brew install novi/tap/cmecab
+```
 
 # Dependencies
 
