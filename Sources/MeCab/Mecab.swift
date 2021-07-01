@@ -17,12 +17,7 @@ public enum MecabError: Error {
     case nodeParseError
 }
 
-public protocol Tokenzier {
-    associatedtype T: TokenNode
-    func tokenize(string str: String) throws -> [T]
-}
-
-public class Mecab: Tokenzier {
+public class Mecab {
     
     let mecab: OpaquePointer
     var mutex = pthread_mutex_t()
@@ -35,7 +30,6 @@ public class Mecab: Tokenzier {
     }
     
     public func tokenize(string str: String) throws -> [Node] {
-        var nodes: [Node] = []
         
         pthread_mutex_lock(&mutex)
         defer {

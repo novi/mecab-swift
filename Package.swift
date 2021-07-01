@@ -1,23 +1,22 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.2
 import PackageDescription
 
-
-#if os(macOS)
-	let CMeCabURL = "https://github.com/novi/CMeCab-OSX.git"
-#else
-	let CMeCabURL = "https://github.com/novi/CMeCab.git"
-#endif
-
 let package = Package(
-    name: "MeCab",
+    name: "mecab-swift",
     products: [
         .library(name: "MeCab", targets: ["MeCab"])
     ],
-    dependencies: [
-        .package(url: CMeCabURL, from: "1.0.0"),
-    ],
     targets: [
-        .target(name: "MeCab"),
+        .systemLibrary(
+            name: "CMeCab",
+            path: "Sources/cmecab",
+            pkgConfig: "cmecab",
+            providers: [
+                .brew(["mecab", "mecab-ipadic"]),
+                .apt(["libmecab-dev", "mecab-ipadic-utf8"])
+            ]
+        ),
+        .target(name: "MeCab", dependencies: ["CMeCab"]),
         .testTarget(name: "MeCabTests", dependencies: ["MeCab"])
     ]
 )
