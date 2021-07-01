@@ -8,12 +8,6 @@
 
 import CMeCab
 
-public protocol TokenNode {
-    var isBosEos: Bool { get }
-    var surface: String { get }
-    var features: [String] { get }
-}
-
 extension Node {
     public enum `Type`: Int {
         case Normal = 0
@@ -24,7 +18,7 @@ extension Node {
     }
 }
 
-public struct Node: TokenNode, CustomStringConvertible {
+public struct Node: CustomStringConvertible {
     public let isBosEos: Bool
     public let surface: String
     public let features: [String]

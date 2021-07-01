@@ -9,15 +9,6 @@
 import XCTest
 @testable import MeCab
 
-extension MeCabTests {
-    static var allTests : [(String, (MeCabTests) -> () throws -> Void)] {
-        return [
-                   ("testTokenizeWithDefaults", testTokenizeWithDefaults),
-                   ("testDemo", testDemo)
-        ]
-    }
-}
-
 class MeCabTests: XCTestCase {
     
     func testTokenizeWithDefaults() throws {
